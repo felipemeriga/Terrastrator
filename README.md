@@ -1,5 +1,5 @@
-# Introduction 
-
+# Terrastrator - The Terraform CLI Orchestrator
+ 
 This is Terrastrator, it’s a CLI that was created in order to help people in executing Terraform modules and scripts with less effort, making the Terraform processes of init, apply, configuring credentials and backend in an automated way. For example, you are working together with your team in a Terraform module, before effectively running that, you need to make sure that some constraints are defined, and set properly, for example:
 
 * Set AWS access key and secret key as environment variables
