@@ -1,0 +1,50 @@
+{
+  "name": "@felipemeriga/next-generator",
+  "version": "1.0.7",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "rm -rf dist/ && tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
+    "typescript": "tsc"
+  },
+  "bin": {
+    "@felipemeriga/next-generator": "bin/next-generator",
+    "next-generator": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "typescript",
+    "next",
+    "redux",
+    "react",
+    "javascript",
+    "frontend",
+    "thunk"
+  ],
+  "repository": {
+    "url": "https://github.com/felipemeriga/next-typescript-redux-template-generator"
+  },
+  "author": "felipemeriga",
+  "license": "ISC",
+  "prepublish": "npm run build",
+  "devDependencies": {
+    "@types/ejs": "^3.0.5",
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^14.14.22",
+    "@types/shelljs": "^0.8.8",
+    "nodemon": "^2.0.7",
+    "shx": "^0.3.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "ejs": "^3.1.5",
+    "inquirer": "^7.3.3",
+    "ncp": "^2.0.0",
+    "shelljs": "^0.8.4"
+  }
+}
