@@ -1,0 +1,3 @@
+name: <%= projectName %>
+stateBucket: <%= stateBucket %>
+region: <%= region %>
