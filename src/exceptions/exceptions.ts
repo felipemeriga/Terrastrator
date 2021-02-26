@@ -30,6 +30,13 @@ export class AWSInvalidCredentials extends ValidationError {
     }
 }
 
+export class AWSInvalidRegion extends ValidationError {
+    constructor(message: any) {
+        super(message);
+        this.name = "AWSInvalidRegion";
+    }
+}
+
 export class InvalidBucket extends ValidationError {
     constructor(message: any) {
         super(message);

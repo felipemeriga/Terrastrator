@@ -1,8 +1,10 @@
 import AWS from "aws-sdk";
 import {GetCallerIdentityResponse} from "aws-sdk/clients/sts";
-import {AWSInvalidCredentials, BucketWrongRegion, InvalidBucket} from "../exceptions/exceptions";
+import {AWSInvalidCredentials, AWSInvalidRegion, BucketWrongRegion, InvalidBucket} from "../exceptions/exceptions";
 import chalk from "chalk";
 import {GetBucketLocationOutput} from "aws-sdk/clients/s3";
+import {DescribeRegionsResult} from "aws-sdk/clients/ec2";
+import {updateAwsRegion} from "../aws";
 
 
 export async function validateAWSCredentials() {
@@ -13,6 +15,18 @@ export async function validateAWSCredentials() {
     } catch (e) {
         throw new AWSInvalidCredentials(`Invalid AWS Credentials: ${e.message}`)
     }
+}
+
+export async function validateAWSRegion(region: string) {
+    const ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
+    const data: DescribeRegionsResult = await ec2.describeRegions().promise();
+    if(data.Regions) {
+        const regions = data.Regions.map(result => result.RegionName);
+        if(!regions.includes(region)) {
+            throw new AWSInvalidRegion(`The region ${region} dont exist, please inform a proper one`)
+        }
+    }
+    updateAwsRegion(region);
 }
 
 async function checkBucketName(s3: AWS.S3, bucketName: string) {
